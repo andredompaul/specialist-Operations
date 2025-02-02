@@ -1,0 +1,279 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy-950: #000000;
+  --navy-900: #1a1a1a;
+  --navy-800: #808080;
+  --gold: #FFD700;
+  --gold-light: #FFF1AA;
+}
+
+body {
+  @apply bg-navy-900 text-black;
+}
+
+.text-gold {
+  color: var(--gold);
+}
+
+.text-gold-light {
+  color: var(--gold-light);
+}
+
+.hero-pattern {
+  background-image: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.hero-pattern::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.5));
+  backdrop-filter: blur(4px);
+}
+
+.hero-pattern h1,
+.hero-pattern p {
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.hero-pattern a {
+  color: white;
+}
+
+.service-card {
+  backdrop-filter: blur(16px);
+  background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 100%);
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.service-card h3,
+.service-card p,
+.service-card svg {
+  color: white;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.service-card.bg-black {
+  background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 100%);
+  border-color: rgba(255,255,255,0.2);
+}
+
+.service-card.bg-black h3,
+.service-card.bg-black p,
+.service-card.bg-black svg {
+  color: white;
+}
+
+.service-card.bg-black:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+  border-color: rgba(255,255,255,0.3);
+}
+
+/* Update contact section background */
+#contact {
+  background-image: url("https://images.unsplash.com/photo-1571646034647-52e6ea84b28c?auto=format&fit=crop&q=80"), /* BMW GS1300 */
+                    url("https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80"); /* Mercedes S-Class */
+  background-size: 400px, 450px;
+  background-position: right center, left center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(0,0,0,0.95), rgba(0,0,0,0.98));
+  backdrop-filter: blur(4px);
+}
+
+/* Update contact form styling for better contrast */
+.contact-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--gold);
+}
+
+.contact-form label {
+  color: white;
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.feature-grid {
+  background-image: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2070");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.feature-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(145deg, rgba(0,0,0,0.87), rgba(0,0,0,0.83));
+  backdrop-filter: blur(8px);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  @apply outline-none ring-2 ring-opacity-50;
+  --tw-ring-color: var(--gold);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-navy-950;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  @apply rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-light);
+}
+
+.nav-blur {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.9);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.nav-blur a {
+  color: white;
+}
+
+.vehicle-decoration {
+  background-image: url("https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=1740"), 
+                    url("https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=1740");
+  background-size: 300px, 400px;
+  background-position: bottom right, bottom left;
+  background-repeat: no-repeat;
+  position: relative;
+  height: 200px;
+  width: 100%;
+  margin-top: -200px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.vehicle-decoration::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 20%, rgba(26,26,26,0.7));
+  backdrop-filter: blur(1px);
+}
+
+.core-services {
+  position: relative;
+  z-index: 1;
+}
+
+.core-services::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background-image: url("https://images.unsplash.com/photo-1571646034647-52e6ea84b28c?auto=format&fit=crop&q=80"), /* Superbike */
+                    url("https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80"); /* Luxury car */
+  background-size: 400px, 450px;
+  background-position: right center, left center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  filter: grayscale(20%);
+  backdrop-filter: blur(1px);
+}
+
+/* Update footer text */
+footer {
+  color: white;
+}
+
+footer p,
+footer a,
+footer li {
+  color: white;
+}
+
+footer a:hover {
+  color: var(--gold);
+}
+
+.hero-text-black {
+  color: black;
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.services-title-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem;
+}
+
+.your-section {
+  background-image: url("https://images.unsplash.com/your-image-url");
+  background-size: cover;
+  background-position: center;
+  height: 400px; /* Set desired height */
+}
+

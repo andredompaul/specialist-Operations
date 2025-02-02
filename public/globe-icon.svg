@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- Main circle -->
+  <circle cx="12" cy="12" r="10" stroke="#FFD700" stroke-width="1.5"/>
+  <!-- Horizontal lines -->
+  <path d="M2 12h20" stroke="#FFD700" stroke-width="1.5"/>
+  <path d="M4 8h16" stroke="#FFD700" stroke-width="1"/>
+  <path d="M4 16h16" stroke="#FFD700" stroke-width="1"/>
+  <!-- Vertical curves -->
+  <path d="M12 2C14.5 7 14.5 17 12 22" stroke="#FFD700" stroke-width="1.5"/>
+  <path d="M7 3C9.5 8 9.5 16 7 21" stroke="#FFD700" stroke-width="1"/>
+  <path d="M17 3C14.5 8 14.5 16 17 21" stroke="#FFD700" stroke-width="1"/>
+</svg> 
