@@ -12,6 +12,8 @@ import {
   Menu,
   X,
 } from 'lucide-react';
+import policeCarImage from './assets/police-car.jpg';
+import policeMotorcycleImage from './assets/police-motorcycle.jpg';
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,7 +86,7 @@ function App() {
     {
       icon: Shield,
       title: 'High-Value Asset Transport',
-      description: 'Secure logistics and transportation solutions for valuable assets with real-time monitoring, including Jewllery, Precious stones, Bonds, Documents, Art, and much more',
+      description: 'Secure logistics and transportation solutions for valuable assets with real-time monitoring, including Jewellery, Precious stones, Bonds, Documents, Art, and much more',
     },
     {
       icon: Users,
@@ -167,11 +169,11 @@ function App() {
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-20 px-4 relative overflow-hidden">
+      <section id="services" className="py-20 px-4 relative overflow-hidden services-background">
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="service-card bg-black p-8 rounded-lg relative overflow-hidden">
+              <div key={index} className="service-card p-8 rounded-lg relative overflow-hidden">
                 <service.icon className="h-12 w-12 mb-4 text-white" />
                 <h3 className="text-xl font-bold mb-3 text-white">
                   {service.title}
@@ -289,7 +291,7 @@ function App() {
             </div>
             <div>
               <h4 className="font-bold mb-4 text-white">Contact</h4>
-              <p className="text-white">All emails are monitored, once you are in contact a contact number will be supplied</p>
+              <p className="text-white">All emails are monitored, once you are in contact a contact number will be supplied.</p>
             </div>
             <div>
               <h4 className="font-bold mb-4 text-white">Legal</h4>
@@ -297,7 +299,7 @@ function App() {
                 <li>
                   <a href="#" className="hover:text-gold transition-colors">Privacy Policy</a>
                   <p className="text-sm mt-1 text-gray-400">
-                    We prioritise the privacy and security of your personal information, ensuring it is collected, used, and protected in compliance with applicable laws. Your data is never shared without consent, except as required by law or to fulfil our services responsibly.
+                    We prioritise the privacy and security of your personal information, ensuring it is collected, used, and protected in compliance with applicable laws. Your data is never shared without consent, except as required by law.
                   </p>
                 </li>
                 <li>
@@ -320,6 +322,8 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <img src="/path/to/your/image.jpg" alt="Description" />
     </div>
   );
 }

@@ -52,11 +52,12 @@ body {
 
 .service-card {
   backdrop-filter: blur(16px);
-  background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 100%);
+  background: linear-gradient(145deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.45) 100%);
   border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .service-card h3,
@@ -66,23 +67,6 @@ body {
 }
 
 .service-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-  border-color: rgba(255,255,255,0.3);
-}
-
-.service-card.bg-black {
-  background: linear-gradient(145deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.9) 100%);
-  border-color: rgba(255,255,255,0.2);
-}
-
-.service-card.bg-black h3,
-.service-card.bg-black p,
-.service-card.bg-black svg {
-  color: white;
-}
-
-.service-card.bg-black:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.6);
   border-color: rgba(255,255,255,0.3);
@@ -220,27 +204,29 @@ html {
   backdrop-filter: blur(1px);
 }
 
-.core-services {
+.services-background {
   position: relative;
-  z-index: 1;
+  background: transparent;
 }
 
-.core-services::before {
+.services-background::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: -1;
-  background-image: url("https://images.unsplash.com/photo-1571646034647-52e6ea84b28c?auto=format&fit=crop&q=80"), /* Superbike */
-                    url("https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80"); /* Luxury car */
-  background-size: 400px, 450px;
-  background-position: right center, left center;
+  z-index: 0;
+  background-image: 
+    url(${policeCarImage}),
+    url(${policeMotorcycleImage});
+  background-size: 800px, 700px;
+  background-position: 95% center, 5% center;
   background-repeat: no-repeat;
-  opacity: 0.15;
-  filter: grayscale(20%);
-  backdrop-filter: blur(1px);
+  opacity: 0.25;
+  filter: none;
+  background-color: transparent;
+  background-blend-mode: normal;
 }
 
 /* Update footer text */
