@@ -39,12 +39,24 @@ function App() {
     
     const now = new Date();
     
-    // Remove the submit_action wrapper and send data directly
+    // Create payload for webhook with email structure
     const payload = {
-      name: formData.name,
-      email: formData.email,
-      company: formData.company,
-      message: formData.message,
+      recipientArray: [formData.email],
+      from: "noreply@specialistoperations.com",
+      content: `Thank you,\n\n ${formData.name} your message has been logged and someone will be in touch shortly.\n\n\nSPECIALIST OPERATIONS   Pro bono publico`,
+      sender: "Specialist Operations",
+      subject: formData.name,
+      priority: "normal",
+      contentType: "text",
+      headers: {},
+      // Add form details in a structured format
+      formDetails: {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company,
+        message: formData.message,
+        enquiryTime: now.toLocaleString()
+      },
       submission_time: {
         iso: now.toISOString(),
         local: now.toLocaleString(),
@@ -112,7 +124,7 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             <div className="flex items-center">
-              <Globe className="h-8 w-8 text-white" />
+              <Globe className="h-8 w-8 text-gold" />
               <span className="ml-2 text-xl font-bold text-white">SPECIALIST OPERATIONS</span>
             </div>
             
@@ -121,7 +133,7 @@ function App() {
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 className="text-gold hover:text-gold-light"
               >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? <X className="h-6 w-6 text-gold" /> : <Menu className="h-6 w-6 text-gold" />}
               </button>
             </div>
 
@@ -155,14 +167,14 @@ function App() {
             <span className="hero-text-3d">Specialist Security Solutions</span>
           </h1>
           <p className="text-xl md:text-2xl text-white mb-12 max-w-3xl mx-auto leading-relaxed">
-            Rooted in law enforcement and specialist operations, our security services offer unparalleled protection for corporate leaders, government officials, and VIP clients and private individuals
+            Rooted in law enforcement and specialist operations, our security services offer unparalleled protection for corporate leaders, government officials, VIP clients and private individuals.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <a href="#contact" className="group border border-gold text-white px-8 py-4 rounded-md hover:border-gold-light hover:text-gold-light transition-colors inline-flex items-center justify-center backdrop-blur-sm">
-              Request Consultation <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              Request Consultation <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform text-gold" />
             </a>
             <a href="#services" className="group border border-gold text-white px-8 py-4 rounded-md hover:border-gold-light hover:text-gold-light transition-colors inline-flex items-center justify-center backdrop-blur-sm">
-              Explore Services
+              Explore Services <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform text-gold" />
             </a>
           </div>
         </div>
@@ -174,7 +186,7 @@ function App() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
               <div key={index} className="service-card p-8 rounded-lg relative overflow-hidden">
-                <service.icon className="h-12 w-12 mb-4 text-white" />
+                <service.icon className="h-12 w-12 mb-4 text-gold !text-[#FFD700] !important" style={{color: '#FFD700'}} />
                 <h3 className="text-xl font-bold mb-3 text-white">
                   {service.title}
                 </h3>
@@ -192,21 +204,21 @@ function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid md:grid-cols-3 gap-8">
             <div className="service-card p-8 rounded-lg">
-              <Clock className="h-8 w-8 text-gold mb-4" />
+              <Clock className="h-8 w-8 text-gold !text-[#FFD700] !important" style={{color: '#FFD700'}} />
               <div>
                 <h3 className="text-xl font-bold mb-2 text-gold">24/7 Global Operations</h3>
                 <p className="text-black">Round-the-clock security services and rapid response capabilities worldwide.</p>
               </div>
             </div>
             <div className="service-card p-8 rounded-lg">
-              <Globe className="h-8 w-8 text-gold mb-4" />
+              <Globe className="h-8 w-8 text-gold !text-[#FFD700] !important" style={{color: '#FFD700'}} />
               <div>
                 <h3 className="text-xl font-bold mb-2 text-gold">International Reach</h3>
                 <p className="text-black">Operations in over 50 countries with local expertise and global standards.</p>
               </div>
             </div>
             <div className="service-card p-8 rounded-lg">
-              <Lock className="h-8 w-8 text-gold mb-4" />
+              <Lock className="h-8 w-8 text-gold !text-[#FFD700] !important" style={{color: '#FFD700'}} />
               <div>
                 <h3 className="text-xl font-bold mb-2 text-gold">Advanced Technology</h3>
                 <p className="text-black">State-of-the-art security systems and protocols for maximum protection.</p>
@@ -271,7 +283,7 @@ function App() {
                 type="submit"
                 className="group border border-gold text-white px-8 py-4 rounded-md hover:border-gold-light hover:text-gold-light transition-colors inline-flex items-center backdrop-blur-sm"
               >
-                Submit Request <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                Submit Request <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform text-gold" />
               </button>
             </div>
           </form>
@@ -284,7 +296,7 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center mb-4">
-                <Globe className="h-8 w-8 text-white" />
+                <Globe className="h-8 w-8 text-gold" />
                 <span className="ml-2 text-xl font-bold text-white">SPECIALIST OPERATIONS</span>
               </div>
               <p className="text-white">Pro bono publico</p>
