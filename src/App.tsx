@@ -39,7 +39,7 @@ function App() {
     
     const now = new Date();
     
-    // Create payload for webhook with email structure
+    // Create payload for webhook with complete details
     const payload = {
       recipientArray: [formData.email],
       from: "noreply@specialistoperations.com",
