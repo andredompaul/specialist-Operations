@@ -24,6 +24,7 @@ function App() {
     company: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,24 +38,38 @@ function App() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Trim all form inputs
+    const trimmedData = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      company: formData.company.trim(),
+      message: formData.message.trim()
+    };
+    
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(trimmedData.email)) {
+      alert('Please enter a valid email address');
+      return;
+    }
+    
+    setIsSubmitting(true);
     const now = new Date();
     
-    // Create payload for webhook with complete details
     const payload = {
-      recipientArray: [formData.email],
+      recipientArray: [trimmedData.email],
       from: "specialistoperations@outlook.com",
-      content: `Thank you,\n\n ${formData.name} your message has been logged and someone will be in touch shortly.\n\n\nSPECIALIST OPERATIONS   Pro bono publico`,
+      content: `Thank you,\n\n ${trimmedData.name} your message has been logged and someone will be in touch shortly.\n\n\nSPECIALIST OPERATIONS   Pro bono publico`,
       sender: "Specialist Operations",
-      subject: formData.name,
+      subject: trimmedData.name,
       priority: "normal",
       contentType: "text",
       headers: {},
-      // Add form details in a structured format
       formDetails: {
-        name: formData.name,
-        email: formData.email,
-        company: formData.company,
-        message: formData.message,
+        name: trimmedData.name,
+        email: trimmedData.email,
+        company: trimmedData.company,
+        message: trimmedData.message,
         enquiryTime: now.toLocaleString()
       },
       submission_time: {
@@ -74,9 +89,6 @@ function App() {
       });
 
       if (response.ok) {
-        const responseData = await response.json();
-        console.log('Webhook response:', responseData);
-        
         setFormData({
           name: '',
           email: '',
@@ -84,13 +96,15 @@ function App() {
           message: ''
         });
         
-        alert('Your consultation request has been submitted successfully.');
+        alert('Thank you for your enquiry. We will be in touch shortly.');
       } else {
         throw new Error('Submission failed');
       }
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('There was an error submitting your request. Please try again later.');
+      alert('Sorry, there was a problem submitting your request. Please try again or contact us directly.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -281,9 +295,11 @@ function App() {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="group border border-gold text-white px-8 py-4 rounded-md hover:border-gold-light hover:text-gold-light transition-colors inline-flex items-center backdrop-blur-sm"
+                disabled={isSubmitting}
+                className={`group border border-gold text-white px-8 py-4 rounded-md hover:border-gold-light hover:text-gold-light transition-colors inline-flex items-center backdrop-blur-sm ${isSubmitting ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
-                Submit Request <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform text-gold" />
+                {isSubmitting ? 'Submitting...' : 'Submit Request'} 
+                <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform text-gold" />
               </button>
             </div>
           </form>
